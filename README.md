@@ -12,7 +12,7 @@ I embarked on this 100-day challenge not only to gain proficiency in Django but 
 
 Here you will find a list of Django projects I have worked on:
 
-1. 
+1. [MyFirstDjangoProject](https://github.com/MicrQ/100DaysOfDjango/MyFirstDjangoProject)
 2. 
 
 ## React Projects
