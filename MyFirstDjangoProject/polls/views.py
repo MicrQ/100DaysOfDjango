@@ -4,7 +4,10 @@ from django.http import HttpResponse
 
 
 def index(request):
-    """ haldes the root page
-        Return: HttpResponse with simple text
+    """ handles the root page
+        Args:
+            request: HttpRequest object
+        Return:
+            HttpResponse with simple text
     """
     return HttpResponse("Welcome to polls app!")
