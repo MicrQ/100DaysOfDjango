@@ -1,12 +1,12 @@
 from django.shortcuts import render
-from django.http import HttpResponse
+from django.http import HttpRequest, HttpResponse
 # from django.template import loader
 from django.shortcuts import render
 from .models import Question
 """ My first and the most basic django view """
 
 
-def index(request):
+def index(request: HttpRequest) -> HttpResponse:
     """ handles the root page
         Args:
             request: HttpRequest object
@@ -38,7 +38,7 @@ def detail(request, question_id: int):
     return HttpResponse(response % question_id)
 
 
-def results(request, question_id: int):
+def results(request: HttpRequest, question_id: int) -> HttpResponse:
     """ handles the results of a question
 
         Args:
@@ -52,7 +52,7 @@ def results(request, question_id: int):
     return HttpResponse(response % question_id)
 
 
-def vote(request, question_id: int):
+def vote(request: HttpRequest, question_id: int) -> HttpResponse:
     """ handles the voting of a question
 
         Args:
