@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.http import HttpResponse
+from django.template import loader
 from .models import Question
 """ My first and the most basic django view """
 
@@ -13,7 +14,14 @@ def index(request):
     """
     latest_question_list = Question.objects.order_by('-pub_date')[:5]
     output = ", ".join([q.question_text for q in latest_question_list])
-    return HttpResponse(output)
+
+    # loading template and sending it as a response
+    tamplate = loader.get_template('polls/index.html')
+    context = {
+        'latest_question_list': latest_question_list
+    }
+
+    return HttpResponse(tamplate.render(context, request))
 
 
 def detail(request, question_id: int):
