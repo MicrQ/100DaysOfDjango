@@ -13,7 +13,7 @@ def index(request):
     return HttpResponse("Welcome to polls app!")
 
 
-def detail(request, qustion_id: int):
+def detail(request, question_id: int):
     """ handles the  detail of a question
         Args:
             request: HttpRequest object
@@ -23,7 +23,7 @@ def detail(request, qustion_id: int):
     """
     response = "You're looking at the results of question %s"
 
-    return HttpResponse(response % qustion_id)
+    return HttpResponse(response % question_id)
 
 
 def results(request, question_id: int):
