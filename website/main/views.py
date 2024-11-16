@@ -5,4 +5,4 @@ from django.http import HttpResponse
 
 def home(request):
     """ home page || landing page """
-    return HttpResponse('<h1>Hello, World!</h1>')
+    return render(request, 'main/home.html')
