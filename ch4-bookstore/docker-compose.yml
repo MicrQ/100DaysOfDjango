@@ -1,0 +1,23 @@
+version: '3.9' # Specify the version of the Compose file format
+
+services: # defines the services that will be created as part of this application.
+  web: # Typically corrsponds to the main application.(django application)
+    build: . # indicates the location of the Dockerfile that will be used to build the image for this service.
+    command: python bookstore/manage.py runserver 0.0.0.0:8000 # the command to run when the container starts
+    volumes: # mounts the current directory to the /bookstore directory in the container.
+      - .:/bookstore
+    ports: # mounts network ports from the container to the host machine.
+      - 8000:8000
+    depends_on: # specifies that the web service depends on the db service.
+      - db
+
+  db: # specifies the base image to use for the db service.
+    image: postgres:13
+    volumes: # defines data persistence for the database.
+      - postgres_data:/var/lib/postgresql/data/
+    environment: # sets environment variable for the container.
+      - 'POSTGRES_HOST_AUTH_METHOD=trust' # allows connections to the database without a password.
+      # only for development purposes, not recommended for production.(INSECURE)
+
+volumes:
+  postgres_data: # defines named volumes that persist data across container restarts.
