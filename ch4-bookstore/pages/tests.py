@@ -21,3 +21,17 @@ class HomePageTests(SimpleTestCase):
         """ test to check if the right template is used """
         response = self.client.get(reverse('home'))
         self.assertTemplateUsed(response, 'home.html')
+
+    def test_homepage_contains_correct_html(self):
+        """ test to check if the response contains
+            the expected html
+        """
+        response = self.client.get(reverse('home'))
+        self.assertContains(response, 'home page')
+
+    def test_homepage_does_not_contain_incorrect_html(self):
+        """ test to check if the response does not contain
+            the unexpected html
+        """
+        response = self.client.get(reverse('home'))
+        self.assertNotContains(response, 'Hi there! I should not be here.')
