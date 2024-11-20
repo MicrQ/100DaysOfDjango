@@ -16,3 +16,8 @@ class HomePageTests(SimpleTestCase):
         """
         response = self.client.get(reverse('home'))
         self.assertEqual(response.status_code, 200)
+
+    def test_homepage_template(self):
+        """ test to check if the right template is used """
+        response = self.client.get(reverse('home'))
+        self.assertTemplateUsed(response, 'home.html')
