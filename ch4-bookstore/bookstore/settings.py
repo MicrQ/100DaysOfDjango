@@ -43,8 +43,10 @@ INSTALLED_APPS = [
     'pages.apps.PagesConfig',
 
     # third party
-    "crispy_forms",
-    "crispy_bootstrap5",
+    'crispy_forms',
+    'crispy_bootstrap5',
+    'allauth',
+    'allauth.account'
 ]
 
 AUTH_USER_MODEL = 'accounts.CustomUser'
@@ -143,5 +145,9 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 LOGIN_REDIRECT_URL = 'home' # after a successful login, redirects user to the home page
 LOGOUT_REDIRECT_URL = 'home'
 
+# crispy conifig
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
+
+# django-allauth config
+SITE_ID = 1
