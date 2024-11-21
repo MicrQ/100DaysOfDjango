@@ -35,3 +35,31 @@ class HomePageTests(SimpleTestCase):
             the unexpected html
         """
         self.assertNotContains(self.response, 'Hi there! I should not be here.')
+
+
+class AboutPageTests(SimpleTestCase):
+    """ tests for the static about page """
+
+    def setUp(self):
+        """ used to avoid redundency by loading necessary resources first """
+        self.response = self.client.get(reverse('about'))
+
+    def test_aboutpage_status_code(self):
+        """ test to check if the about page is available on the
+            expected endpoint.
+        """
+        self.assertEqual(200, self.response.status_code)
+
+    def test_aboutpage_template(self):
+        """ test to check if the about page is using the right template """
+        self.assertTemplateUsed('about.html')
+
+    def test_aboutpage_contains_correct_html(self):
+        """ test to check if the page contains the expected html response """
+        self.assertContains(self.response, 'About Page')
+
+    def test_aboutpage_does_not_contain_incorrect_html(self):
+        """ test to check if the html response dosen't contain
+            unexpected response
+        """
+        self.assertNotContains(self.response, 'Hi there! I should not be here')
