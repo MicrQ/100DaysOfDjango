@@ -1,0 +1,1 @@
+console.log('Test from js static file.');
