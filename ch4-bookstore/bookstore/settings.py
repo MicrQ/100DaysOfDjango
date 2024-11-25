@@ -164,6 +164,9 @@ AUTHENTICATION_BACKENDS = (
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+
+
 ACCOUNT_SESSION_REMEMBER = True
 ACCOUNT_SIGNUP_PASSWORD_ENTER_TWICE = False
 
@@ -174,4 +177,9 @@ ACCOUNT_UNIQUE_EMAIL = True
 
 
 # email messaging
-DEFAULT_FROM_EMAIL = 'micrq@django.py'
+DEFAULT_FROM_EMAIL = 'my-gmail@gmail.com'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'my-gmail@gmail.com'
+EMAIL_HOST_PASSWORD = 'smpt app password'
+EMAIL_USE_TLS = True
