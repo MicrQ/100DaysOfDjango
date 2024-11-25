@@ -11,6 +11,8 @@ services: # defines the services that will be created as part of this applicatio
       - 8000:8000
     depends_on: # specifies that the web service depends on the db service.
       - db
+    environment:
+      - 'DJANGO_SECRET_KEY=django-insecure-oq0bf%12p__36toq$y2ul#z6mi7tt@ph#t%^w3&p+0^js!-vdw'
 
   db: # specifies the base image to use for the db service.
     image: postgres:13
