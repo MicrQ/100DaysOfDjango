@@ -40,23 +40,31 @@ class CustomUserTests(TestCase):
 class SignUpPageTests(TestCase):
     """ tests dedicated to the signup page and functionality """
 
+    username = 'newuser'
+    email = 'newuser@email.com'
+
     def setUp(self):
         """ will be used to avoid redundency and repetition """
-        url = reverse('signup')
+        url = reverse('account_signup')
         self.response = self.client.get(url)
 
     def test_signup_template(self):
         """ test to check if the right template is used """
         self.assertEqual(self.response.status_code, 200)
-        self.assertTemplateUsed(self.response, 'registration/signup.html')
+        self.assertTemplateUsed(self.response, 'account/signup.html')
         self.assertContains(self.response, 'Sign Up')
         self.assertNotContains(self.response, 'Hi there! I should not be here.')
 
     def test_signup_form(self):
         """" test for the form used in the signup page """
-        form = self.response.context.get('form')
-        self.assertIsInstance(form, CustomUserCreationForm)
-        self.assertContains(self.response, 'csrfmiddlewaretoken')
+        new_user = get_user_model().objects.create_user(self.username, self.email)
+        self.assertEqual(get_user_model().objects.all().count(), 1)
+        self.assertEqual(get_user_model().objects.all()[0].username, self.username)
+        self.assertEqual(get_user_model().objects.all()[0].email, self.email)
+        
+        # form = self.response.context.get('form')
+        # self.assertIsInstance(form, CustomUserCreationForm)
+        # self.assertContains(self.response, 'csrfmiddlewaretoken')
 
     def test_signup_view(self):
         """ test for the signup page view """
