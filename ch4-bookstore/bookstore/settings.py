@@ -141,17 +141,18 @@ STATICFILES_STORAGE = "django.contrib.staticfiles.storage.StaticFilesStorage" # 
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# added by me
-LOGIN_REDIRECT_URL = 'home' # after a successful login, redirects user to the home page
-LOGOUT_REDIRECT_URL = 'home'
 
 # crispy conifig
 CRISPY_ALLOWED_TEMPLATE_PACKS = 'bootstrap5'
 CRISPY_TEMPLATE_PACK = 'bootstrap5'
 
 # django-allauth config
+LOGIN_REDIRECT_URL = 'home' # after a successful login, redirects user to the home page
+ACCOUNT_LOGOUT_REDIRECT = 'home'
 SITE_ID = 1
 AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
     'allauth.account.auth_backends.AuthenticationBackend'
 )
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
