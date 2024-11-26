@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     # the followings are the apps created for this project
     'accounts.apps.AccountsConfig',
     'pages.apps.PagesConfig',
+    'books.apps.BooksConfig',
 
     # third party
     'crispy_forms',
