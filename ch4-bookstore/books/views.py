@@ -18,3 +18,10 @@ class BookDetailView(LoginRequiredMixin, DetailView):
     context_object_name = 'book'
     template_name = 'books/book_detail.html'
     login_url = 'account_login'
+
+
+class SearchResultListView(ListView):
+    """ view for search results """
+    model = Book
+    context_object_name = 'book_list'
+    template_name = 'books/search_results.html'
