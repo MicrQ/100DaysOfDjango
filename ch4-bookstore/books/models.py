@@ -27,7 +27,7 @@ class Book(models.Model):
         """ string representation of the model """
         return self.title
 
-    def get_absolute_url(self): # new
+    def get_absolute_url(self):
         return reverse("book_detail", args=[str(self.id)])
     
 
