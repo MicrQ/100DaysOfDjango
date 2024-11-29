@@ -28,7 +28,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('DJANGO_SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env.bool('DJANGO_DEBUG')
+DEBUG = env.bool('DJANGO_DEBUG', default=False)
 
 ALLOWED_HOSTS = ['.herokuapp.com', 'localhost', '127.0.0.1']
 
@@ -189,3 +189,13 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER = 'my-gmail@gmail.com'
 EMAIL_HOST_PASSWORD = 'smpt app password'
 EMAIL_USE_TLS = True
+
+# HTTPS/TLS
+SECURE_SSL_REDIRECT = env.bool('DJANGO_SECURE_SSL_REDIRECT', default=True)
+
+# HSTS
+SECURE_HSTS_SECONDS = env.int("DJANGO_SECURE_HSTS_SECONDS",
+                              default=2592000) # 30 days
+SECURE_HSTS_INCLUDE_SUBDOMAINS = env.bool(
+    "DJANGO_SECURE_HSTS_INCLUDE_SUBDOMAINS", default=True)
+SECURE_HSTS_PRELOAD = env.bool("DJANGO_SECURE_HSTS_PRELOAD", default=True)
