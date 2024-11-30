@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     # locals
     'books.apps.BooksConfig',
+    'apis.apps.ApisConfig',
 
     # third party
     'rest_framework',
