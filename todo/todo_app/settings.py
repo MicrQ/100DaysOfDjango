@@ -42,6 +42,7 @@ INSTALLED_APPS = [
 
     # Third party
     'rest_framework',
+    'corsheaders', # CORS
 ]
 
 # Rest framework settings
@@ -60,7 +61,12 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # third party
+    'corsheaders.middleware.CorsMiddleware', # CORS
 ]
+
+# CORS allowed origins
+CORS_ALLOWED_ORIGINS = ('http://localhost:8000', 'http://localhost:3000',)
 
 ROOT_URLCONF = 'todo_app.urls'
 
