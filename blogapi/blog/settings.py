@@ -40,7 +40,16 @@ INSTALLED_APPS = [
     # Locals
     'accounts.apps.AccountsConfig',
     'posts.apps.PostsConfig',
+    # Third party
+    'rest_framework',
 ]
+
+# Rest framework config
+REST_FRAMEWORK = {
+    'DEFAUT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ]
+}
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
