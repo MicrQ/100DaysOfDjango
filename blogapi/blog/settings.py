@@ -47,8 +47,8 @@ INSTALLED_APPS = [
 
 # Rest framework config
 REST_FRAMEWORK = {
-    'DEFAUT_PERMISSION_CLASSES': [
-        'rest_framework.permissions.AllowAny',
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.IsAuthenticated',
     ]
 }
 
