@@ -10,7 +10,7 @@ class CustomUserManager(BaseUserManager):
     """ used to customize the user model and its methods """
 
     def create_user(self, email, firstname, lastname,
-                    phone, password=None, **extra_fields):
+                    password=None, **extra_fields):
         """ used to override the default create_user method """
         if not email:
             raise ValueError('The Email field must be set')
@@ -18,12 +18,10 @@ class CustomUserManager(BaseUserManager):
             raise ValueError('The Firstname field must be set')
         if not lastname:
             raise ValueError('The Lastname field must be set')
-        if not phone:
-            raise ValueError('The Phone field must be set')
         
         email = self.normalize_email(email)
         user = self.model(email=email, firstname=firstname,
-                          lastname=lastname, phone=phone, **extra_fields)
+                          lastname=lastname, **extra_fields)
         user.set_password(password)
         user.save(using=self._db)
 
@@ -61,7 +59,7 @@ class CustomUser(AbstractBaseUser, PermissionsMixin, Base):
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
 
-    object = CustomUserManager()
+    objects = CustomUserManager()
 
     USERNAME_FIELD = 'email'
     REQUIRED_FIELDS = ['firstname', 'lastname']
