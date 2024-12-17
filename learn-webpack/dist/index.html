@@ -1,0 +1,9 @@
+<!doctype html>
+<html>
+  <head>
+    <title>Getting Started With Webpack</title>
+  </head>
+  <body>
+    <script src="main.js"></script>
+  </body>
+</html>
