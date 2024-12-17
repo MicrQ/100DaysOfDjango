@@ -2,10 +2,17 @@ from django.db import models
 from rent_bridge.base import Base
 
 
-
 class Location(Base):
     """ represents location(Country, Region, City) """
-    pass
+    name = models.CharField(max_length=50)
+    location_type = models.ForeignKey('LocationType',
+                                      on_delete=models.CASCADE)
+    parent = models.ForeignKey('self', on_delete=models.CASCADE,
+                               blank=True, null=True)
+
+    def __str__(self):
+        """ string representation of location """
+        return self.name
 
 
 class LocationType(Base):
