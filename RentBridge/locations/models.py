@@ -4,7 +4,7 @@ from rent_bridge.base import Base
 
 class Location(Base):
     """ represents location(Country, Region, City) """
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, unique=True)
     location_type = models.ForeignKey('LocationType',
                                       on_delete=models.CASCADE)
     parent = models.ForeignKey('self', on_delete=models.CASCADE,
