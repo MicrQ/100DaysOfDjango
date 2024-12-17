@@ -3,13 +3,17 @@ from rent_bridge.base import Base
 
 
 
-class Location(models.Model, Base):
+class Location(Base):
     """ represents location(Country, Region, City) """
     pass
 
 
-class LocationType(models.Model, Base):
+class LocationType(Base):
     """ represents location type
         MUST BE POPULATED MANUALLY or with SEEDER
     """
     name = models.CharField(max_length=50)
+
+    def __str__(self):
+        """ string representation of location type """
+        return self.name
