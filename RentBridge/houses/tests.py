@@ -1,5 +1,6 @@
-from .models import House
 from django.test import TestCase
+from amenities.models import Amenity
+from .models import House, HouseAmenities
 from django.contrib.auth import get_user_model
 from locations.models import Location, LocationType
 
@@ -38,3 +39,35 @@ class HousetModelTests(TestCase):
         self.assertEqual(self.house.owner.lastname, 'user')
         self.assertEqual(self.house.location.name, 'Hawassa')
         self.assertEqual(self.house.location.location_type.name, 'City')
+
+
+class HouseAmenitiesModelTests(TestCase):
+    """ tests for house amenities model. """
+
+    @classmethod
+    def setUpTestData(cls):
+        """ setting up the data for the tests """
+        HousetModelTests.setUpTestData()
+        cls.house = HousetModelTests.house
+        cls.amenities = Amenity.objects.create(name='Wifi')
+        cls.house_amenities = HouseAmenities.objects.create(
+            house=cls.house,
+            amenity=cls.amenities
+        )
+
+    def test_house_amenities_model(self):
+        """ test if the house amenities model
+            is created with correct values
+        """
+        self.assertEqual(self.house.owner.email, 'test@user.com')
+        self.assertEqual(self.house.location.name, 'Hawassa')
+        self.assertEqual(self.amenities.name, 'Wifi')
+
+        self.assertEqual(self.house_amenities.house.owner.email,
+                         'test@user.com')
+        self.assertEqual(self.house_amenities.house.location.name, 'Hawassa')
+        self.assertEqual(
+            self.house_amenities.house.location.location_type.name,
+            'City'
+        )
+        self.assertEqual(self.house_amenities.amenity.name, 'Wifi')
