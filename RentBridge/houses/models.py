@@ -6,7 +6,7 @@ from django.contrib.auth import get_user_model
 class House(Base):
     """ representation of a rental house """
     owner = models.ForeignKey('accounts.CustomUser',
-                                 on_delete=models.CASCADE)
+                              on_delete=models.CASCADE)
     description = models.TextField()
     location = models.ForeignKey('locations.Location',
                                  on_delete=models.CASCADE)
@@ -17,3 +17,11 @@ class House(Base):
     is_available = models.BooleanField(default=True)
     video = models.FileField(upload_to='house_videos/',
                              blank=True, null=True)
+
+
+class HouseAmenities(Base):
+    """ represents the amenities of a house """
+    house = models.ForeignKey('House',
+                              on_delete=models.CASCADE)
+    amenity = models.ForeignKey('amenities.Amenity',
+                                on_delete=models.CASCADE)
