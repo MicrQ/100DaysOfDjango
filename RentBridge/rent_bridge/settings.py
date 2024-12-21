@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     'locations',
     'payments',
     'houses',
+    'amenities',
 ]
 
 REST_FRAMEWORK = {
