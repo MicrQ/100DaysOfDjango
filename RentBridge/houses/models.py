@@ -12,7 +12,8 @@ class House(Base):
                                  on_delete=models.CASCADE)
     number_of_room = models.IntegerField(default=1)
     payment_method = models.ForeignKey('payments.PaymentMethod',
-                                       on_delete=models.CASCADE)
+                                       on_delete=models.CASCADE,
+                                       null=True, blank=True)
     price_per_month = models.DecimalField(max_digits=10, decimal_places=2)
     is_available = models.BooleanField(default=True)
     video = models.FileField(upload_to='house_videos/',
