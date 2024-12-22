@@ -51,3 +51,5 @@ class AccountViewsTests(TestCase):
         self.assertEqual(response.data['message'],
                          'Logged in successfully')
         self.assertTrue('token' in response.data)
+
+        return response.data['token']
