@@ -1,5 +1,7 @@
+from django.urls import reverse
 from django.test import TestCase
 from .models import Location, LocationType
+from rest_framework.test import APITestCase
 
 
 class LocationTypeTests(TestCase):
@@ -49,3 +51,23 @@ class LocationModelTests(TestCase):
         self.location.parent = parent_location
         self.location.save()
         self.assertEqual(self.location.parent.name, "Africa")
+
+
+class TestLocationTypeAPIView(APITestCase):
+    """ tests for location type api view """
+    @classmethod
+    def setUpTestData(cls):
+        pass
+
+    def test_location_type_api_view(self):
+        """ test location type api view """
+        response = self.client.get(reverse('location_types'))
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.data, [])
+
+        response = self.client.post(reverse('location_types'),
+                                    {'name': 'Country'})
+        self.assertEqual(response.status_code, 401)
+        response = self.client.put(reverse('location_types'),
+                                   {'name': 'Country'})
+        self.assertEqual(response.status_code, 401)
