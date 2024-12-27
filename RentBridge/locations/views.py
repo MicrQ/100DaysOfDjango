@@ -9,3 +9,11 @@ class ListOrCreateLocationTypeView(generics.ListCreateAPIView):
     queryset = LocationType.objects.all()
     serializer_class = LocationTypeSerializer
     permission_classes = [IsAdminOrReadOnly]
+
+
+class RetrieveUpdateDestroyLocationTypeView(
+     generics.RetrieveUpdateDestroyAPIView):
+    """ location type realated CRUD operations """
+    queryset = LocationType.objects.all()
+    serializer_class = LocationTypeSerializer
+    permission_classes = [IsAdminOrReadOnly]
